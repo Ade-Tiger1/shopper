@@ -10,6 +10,7 @@ const ProductDetail = () => {
   // Main selected image
   const [currentIndex, setCurrentIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  let BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   // Selected size
   const allSizes = ["S", "M", "L", "XL", "XXL"];
@@ -23,7 +24,7 @@ const ProductDetail = () => {
 
   // Format images
   const images = product.image.map(
-    (img) => `http://localhost:5000/uploads/images/${img}`
+    (img) => `${BACKEND_URL}/uploads/images/${img}`
   );
 
   

@@ -56,6 +56,7 @@ function Checkout() {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
+  let BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   // Dynamic data
   const [countries, setCountries] = useState(fallbackCountries);
@@ -222,7 +223,7 @@ function Checkout() {
 
   const handleFlutterwavePayment = async (phone_number, shippingCost, deliveryAddress) => {
     try {
-      const res = await fetch("http://localhost:5000/pay", {
+      const res = await fetch(`${BACKEND_URL}/pay`, {
         method: "POST",
         credentials: "include", // include cookies
         headers: { "Content-Type": "application/json" },

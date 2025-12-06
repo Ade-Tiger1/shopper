@@ -6,10 +6,10 @@ const { deleteUser, updateUser, getAllUsers } = require("../Controllers/userCont
 
 
 /*******************Admin User CRUD Route***************************/
-router.post("/create-user", register)
-router.delete("/delete-user/:id", deleteUser)
-router.put("/edit-user/:id", updateUser)
-router.get("/get-users", getAllUsers)
+router.post("/create-user", verifyUser, isAdmin, register)
+router.delete("/delete-user/:id", verifyUser, isAdmin, deleteUser)
+router.put("/edit-user/:id", verifyUser, isAdmin, updateUser)
+router.get("/get-users", verifyUser, isAdmin, getAllUsers)
 
 router.put("/make-admin/:id", makeAdmin)
 

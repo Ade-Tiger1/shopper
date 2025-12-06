@@ -16,6 +16,7 @@ const ProdDetail = () => {
   const [selectedSize, setSelectedSize] = useState("M");
   const { id } = useParams();
   const { products, addToCart } = useContext(ShopperContext);
+  let BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   const product = products?.find((prod) => prod._id === id);
 
@@ -23,7 +24,7 @@ const ProdDetail = () => {
 
   // Format images
   const images = product.image.map(
-    (img) => `http://localhost:5000/uploads/images/${img}`
+    (img) => `${BACKEND_URL}/uploads/images/${img}`
   );
 
   
@@ -135,7 +136,7 @@ const ProdDetail = () => {
         </div>
       </div>
 
-      {/* ⭐ DESCRIPTION */}
+      {/*  DESCRIPTION */}
       <div className="bg-gray-50 mx-5 mt-8 py-8 px-5 rounded-lg">
         <h3 className="font-semibold text-lg mb-3">Description</h3>
         <p className="text-gray-700 leading-relaxed">{product.description}</p>

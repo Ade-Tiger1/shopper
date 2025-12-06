@@ -15,7 +15,7 @@ export const ContextProvider = ({children})=>{
     const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("isAuthenticated") === "true")
     const [loginInput, setLoginInput] = useState({email: "", password: ""})
     const [shippingMethod, setShippingMethod] = useState('standard');
-    const [category, setCategory] = useState("")
+    const [category, setCategory] = useState("all")
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 8;  
     const navigate = useNavigate()
@@ -23,14 +23,15 @@ export const ContextProvider = ({children})=>{
     
    /*****************PRODUCTS*********************/
    useEffect(()=>{
+    const BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
     setIsLoading(true)
     const fetchProducts = async ()=>{
-      let url = "http://localhost:5000/products/"
+      let url =   `${BACKEND_URL}/products`;
       if(category){
         if(category == "all"){
-          url = "http://localhost:5000/products/"
+          url = `${BACKEND_URL}/products`;
         } else{
-           url = `http://localhost:5000/products?category=${encodeURIComponent(category)}`;
+           url = `${BACKEND_URL}/products?category=${encodeURIComponent(category)}`;
         }
       }
       const response = await fetch(url, {
@@ -60,9 +61,10 @@ export const ContextProvider = ({children})=>{
     }
 
     const loginSubmit = async(e) => {
+        const BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
         e.preventDefault()
         try{
-            const res = await fetch("http://localhost:5000/auth/login/", {
+            const res = await fetch(`${BACKEND_URL}/auth/login/`, {
                 method: "POST",
                 credentials: "include",
                 headers: {
@@ -96,8 +98,9 @@ export const ContextProvider = ({children})=>{
 
     /******************LOGOUT******************/
     const handleLogout = async () => {
+        const BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
         try {
-            const res = await fetch("http://localhost:5000/auth/logout", {
+            const res = await fetch(`${BACKEND_URL}/auth/logout`, {
                 method: "POST",
                 credentials: "include", // important if your backend uses httpOnly cookies
             });
@@ -120,8 +123,9 @@ export const ContextProvider = ({children})=>{
 
     // Add product to cart
     const addToCart = async ({ productId, quantity = 1, size }) => {
+   const BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
     try {
-      const response = await fetch("http://localhost:5000/cart/add", {
+      const response = await fetch(`${BACKEND_URL}/cart/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -147,8 +151,9 @@ export const ContextProvider = ({children})=>{
 
   // Fetch cart items from backend
   const getCart = async () => {
+    const BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
     try {
-      const response = await fetch("http://localhost:5000/cart", {
+      const response = await fetch(`${BACKEND_URL}/cart`, {
         method: "GET",
         credentials: "include", // send cookies
       });
@@ -164,7 +169,8 @@ export const ContextProvider = ({children})=>{
   };
 
   const removeCart = async(id) => {
-    const res = await fetch(`http://localhost:5000/cart/delete/${id}`, {
+    const BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+    const res = await fetch(`${BACKEND_URL}/cart/delete/${id}`, {
       method: "DELETE",
       credentials: "include",
     })

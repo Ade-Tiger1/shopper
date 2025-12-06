@@ -5,47 +5,13 @@ import { ShopperContext } from '../../context/Context';
 
 function Cart() {
   const {cart, cartCount, removeCart, updateQuantity, isLoading} = useContext(ShopperContext)
-  console.log(cart)
   const sub = cart.map(cartSubtotal => {
     return cartSubtotal.subtotal
   })
   const subTotal = sub.join(",").split(",")
-  // console.log(subTotal)
   
   const navigate = useNavigate()
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: 'Premium Cotton T-Shirt',
-      price: 29.99,
-      oldPrice: 39.99,
-      image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200',
-      size: 'M',
-      color: 'White',
-      quantity: 1,
-      inStock: true
-    },
-    {
-      id: 2,
-      name: 'Denim Jacket',
-      price: 79.99,
-      image: 'https://images.unsplash.com/photo-1544441893-675973e31985?w=200',
-      size: 'L',
-      color: 'Blue',
-      quantity: 1,
-      inStock: true
-    },
-    {
-      id: 3,
-      name: 'Casual Sneakers',
-      price: 89.99,
-      image: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=200',
-      size: '10',
-      color: 'Black',
-      quantity: 2,
-      inStock: true
-    }
-  ]);
+  
 
   const [promoCode, setPromoCode] = useState('');
   const [appliedPromo, setAppliedPromo] = useState(null);
@@ -60,9 +26,9 @@ function Cart() {
   //   ));
   // };
 
-  const removeItem = (id) => {
-    setCartItems(cart.filter(item => item.id !== id));
-  };
+  // const removeItem = (id) => {
+  //   setCartItems(cart.filter(item => item.id !== id));
+  // };
 
   const applyPromoCode = () => {
     if (promoCode.toUpperCase() === 'SAVE10') {

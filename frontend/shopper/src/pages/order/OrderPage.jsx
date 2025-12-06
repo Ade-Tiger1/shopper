@@ -13,11 +13,12 @@ function OrderPage() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  let BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await fetch("http://localhost:5000/orders", {
+        const res = await fetch(`${BACKEND_URL}/orders`, {
           method: "GET",
           credentials: "include",
           headers: { "Content-Type": "application/json" },

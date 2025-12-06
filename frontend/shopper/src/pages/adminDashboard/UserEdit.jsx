@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 
 const UserEdit = () => {
   const { id } = useParams(); // grab user ID from URL
-  console.log("User ID:", id);
+  let BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const navigate = useNavigate(); // for redirect after save
   const [formData, setFormData] = useState({
     name: "",
@@ -18,7 +18,7 @@ const UserEdit = () => {
     const fetchUser = async () => {
       try {
         // Replace with your actual fetch API
-        const response = await fetch(`http://localhost:5000/user/${id}`, {
+        const response = await fetch(`${BACKEND_URL}/user/${id}`, {
             method: "GET",
             credentials: "include",
             headers: { "Content-Type": "application/json" },
@@ -50,7 +50,7 @@ const UserEdit = () => {
     setLoading(true);
     try {
       // Replace with your actual update API
-      const response = await fetch(`http://localhost:5000/user/edit/${id}`, {
+      const response = await fetch(`${BACKEND_URL}/user/edit/${id}`, {
         method: "PUT",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

@@ -33,7 +33,7 @@ const Products = () => {
         <div key={product._id} className="border shadow-lg rounded-lg overflow-hidden">
           <Link to={`${product._id}`}>
             <div className="card-image">
-              <img className='w-100 h-70 transform transition duration-500 hover:scale-105' src={`http://localhost:5000/uploads/images/${product.image[0]}`} alt="" />
+              <img className='w-full h-70 transform transition duration-500 hover:scale-105' src={`http://localhost:5000/uploads/images/${product.image[0]}`} alt="" />
             </div>
             <div className="card-body p-5">
               <h3 className='mt-3'>{product.title}</h3>

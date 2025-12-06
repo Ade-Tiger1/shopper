@@ -7,6 +7,7 @@ export default function Edit() {
   const { id } = useParams();
   const { products } = useContext(ShopperContext);
   const prod = products?.find((p) => p._id === id);
+  let BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
@@ -36,7 +37,7 @@ export default function Edit() {
         sizes: prod.sizes || "",
         discountPrice: prod.discountPrice != null ? prod.discountPrice : 0,
         images: prod.image
-          ? prod.image.map((img) => `http://localhost:5000/uploads/images/${img}`)
+          ? prod.image.map((img) => `${BACKEND_URL}/uploads/images/${img}`)
           : [],
         newImages: [],
       });
@@ -131,7 +132,7 @@ export default function Edit() {
         });
       }
 
-      const res = await fetch(`http://localhost:5000/products/edit/${id}`, {
+      const res = await fetch(`${BACKEND_URL}/producSts/edit/${id}`, {
         method: "PUT",
         credentials: "include",
         body: formData,

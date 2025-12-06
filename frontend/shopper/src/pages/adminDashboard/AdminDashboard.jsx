@@ -20,6 +20,7 @@ function AdminDashboard() {
   const [orders, setOrders] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(false);
+  let BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   // Fetch real data on component mount and tab change
   useEffect(() => {
@@ -39,7 +40,7 @@ function AdminDashboard() {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/user', {
+      const response = await fetch(`${BACKEND_URL}/user`, {
         credentials: 'include'
       });
       const data = await response.json();
@@ -56,7 +57,7 @@ function AdminDashboard() {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/products', {
+      const response = await fetch(`${BACKEND_URL}/products`, {
         credentials: 'include'
       });
       const data = await response.json();
@@ -72,7 +73,7 @@ function AdminDashboard() {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/orders/admin/all-orders', {
+      const response = await fetch(`${BACKEND_URL}/orders/admin/all-orders`, {
         credentials: 'include'
       });
       const data = await response.json();
@@ -88,7 +89,7 @@ function AdminDashboard() {
   const fetchTransactions = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/transactions', {
+      const response = await fetch(`${BACKEND_URL}/transactions`, {
         credentials: 'include'
       });
       const data = await response.json();
@@ -163,7 +164,7 @@ function AdminDashboard() {
     if (!window.confirm('Are you sure you want to delete this user?')) return;
     
     try {
-      const response = await fetch(`http://localhost:5000/user/delete/${userId}`, {
+      const response = await fetch(`${BACKEND_URL}/user/delete/${userId}`, {
         method: 'DELETE',
         credentials: 'include'
       });
@@ -185,7 +186,7 @@ function AdminDashboard() {
     if (!window.confirm('Are you sure you want to delete this product?')) return;
     
     try {
-      const response = await fetch(`http://localhost:5000/products/delete-product/${productId}`, {
+      const response = await fetch(`${BACKEND_URL}/products/delete-product/${productId}`, {
         method: 'DELETE',
         credentials: 'include'
       });
@@ -205,7 +206,7 @@ function AdminDashboard() {
   // Update Order Status
   const handleUpdateOrderStatus = async (orderId, newStatus) => {
     try {
-      const response = await fetch(`http://localhost:5000/orders/${orderId}`, {
+      const response = await fetch(`${BACKEND_URL}/orders/${orderId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -226,7 +227,7 @@ function AdminDashboard() {
 
   const handleLogout = async(e)=>{
     e.stopPropagation();
-    const res = fetch("http://localhost:5000/auth/logout", {
+    const res = fetch(`${BACKEND_URL}/auth/logout`, {
         method: "POST",
         credentials: "include"
     });
@@ -527,7 +528,7 @@ const ProductsContent = () => {
       
       // Add your product submission logic here
       try {
-    const res = await fetch("http://localhost:5000/products/create-product", {
+    const res = await fetch(`${BACKEND_URL}/products/create-product`, {
       method: "POST",
       credentials: "include",   // to send cookie token
       body: submitData          // no headers needed for FormData

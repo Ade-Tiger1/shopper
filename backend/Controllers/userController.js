@@ -34,7 +34,7 @@ const updateUser = asyncWrapper(async(req, res, next) => {
 const deleteUser = asyncWrapper(async(req, res, next) => {
     const {id} = req.params;
     const deletedUser = await User.findByIdAndDelete(id)
-    if(!deleteUser){
+    if(!deletedUser){
         return res.status(StatusCodes.NOT_FOUND).json({msg: "No User Found"})
     }
     const deleteFromAuth = await Auth.findOneAndDelete({userid: id})

@@ -6,8 +6,8 @@ const Auth = require("../Models/authModel")
 const User = require("../Models/userModel")
 
 const register = asyncWrapper(async(req, res, next) => {
-    const {name, email, password, address} = req.body;
-    if(!name || !email || !password || !address){
+    const {name, email, password} = req.body;
+    if(!name || !email || !password){
         return res.status(StatusCodes.BAD_REQUEST).json({msg: "Fill in complete details"})
     }
     const verifyEmail = await Auth.findOne({email})
@@ -18,7 +18,6 @@ const register = asyncWrapper(async(req, res, next) => {
 
     const users = new User({
         name,
-        address
     })
     const savedUser = await users.save();
     const auth = new Auth({
