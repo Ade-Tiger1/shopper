@@ -16,7 +16,6 @@ const verifyUser = asyncWrapper(async(req, res, next) => {
 const isAdmin = asyncWrapper(async(req, res, next) => {
     /********************Projection requesting for only the field i want*****************************/
     const userRole = await User.findById(req.user, "role")
-    console.log(userRole)
     /*console.log(userRole)*/
     if(!userRole){
         return res.status(StatusCodes.NOT_FOUND).json({msg: "User Does Not Exist"})
