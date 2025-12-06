@@ -84,7 +84,7 @@ function Checkout() {
   }, []);
 
   const fetchCountries = async () => {
-    const API_KEY = 'YOUR_API_KEY_HERE'; // Replace with actual key from https://countrystatecity.in/
+    const API_KEY = import.meta.env.VITE_API_KEY || 'YOUR_API_KEY_HERE'; // Replace with actual key from https://countrystatecity.in/
     
     // If no API key set, use fallback immediately
     if (API_KEY === 'YOUR_API_KEY_HERE') {
@@ -134,9 +134,10 @@ function Checkout() {
     // Try API if available
     try {
       setLoadingLocations(true);
+      const API_KEY = import.meta.env.VITE_API_KEY || 'YOUR_API_KEY_HERE';
       const response = await fetch(`https://api.countrystatecity.in/v1/countries/${countryCode}/states`, {
         headers: {
-          'X-CSCAPI-KEY': 'YOUR_API_KEY_HERE'
+          'X-CSCAPI-KEY': API_KEY
         }
       });
       
@@ -170,11 +171,12 @@ function Checkout() {
     // Try API if available
     try {
       setLoadingLocations(true);
+      const API_KEY = import.meta.env.VITE_API_KEY || 'YOUR_API_KEY_HERE';
       const response = await fetch(
         `https://api.countrystatecity.in/v1/countries/${shippingInfo.country}/states/${stateCode}/cities`,
         {
           headers: {
-            'X-CSCAPI-KEY': 'YOUR_API_KEY_HERE'
+            'X-CSCAPI-KEY': API_KEY
           }
         }
       );
