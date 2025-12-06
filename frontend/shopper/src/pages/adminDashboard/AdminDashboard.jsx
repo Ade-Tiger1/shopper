@@ -389,7 +389,7 @@ function AdminDashboard() {
               <thead className="bg-gray-50 border-b border-gray-100">
                 <tr>
                   <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase">User</th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase">Address</th>
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase">Roles</th>
                   <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase">Created At</th>
                   <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase">Actions</th>
                 </tr>
@@ -400,7 +400,7 @@ function AdminDashboard() {
                     <td className="px-6 py-4">
                       <p className="font-semibold text-gray-900">{user.name}</p>
                     </td>
-                    <td className="px-6 py-4 text-gray-900">{user.address || 'N/A'}</td>
+                    <td className="px-6 py-4 text-gray-900">{user.role || 'N/A'}</td>
                     <td className="px-6 py-4 text-gray-500">
                       {new Date(user.createdAt).toLocaleDateString()}
                     </td>
