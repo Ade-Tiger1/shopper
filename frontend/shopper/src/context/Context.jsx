@@ -26,12 +26,12 @@ export const ContextProvider = ({children})=>{
     const BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
     setIsLoading(true)
     const fetchProducts = async ()=>{
-      let url =   `${BACKEND_URL}/products`;
+      let url =   `${BACKEND_URL}/api/products`;
       if(category){
         if(category == "all"){
-          url = `${BACKEND_URL}/products`;
+          url = `${BACKEND_URL}/api/products`;
         } else{
-           url = `${BACKEND_URL}/products?category=${encodeURIComponent(category)}`;
+           url = `${BACKEND_URL}/api/products?category=${encodeURIComponent(category)}`;
         }
       }
       const response = await fetch(url, {
@@ -125,7 +125,7 @@ export const ContextProvider = ({children})=>{
     const addToCart = async ({ productId, quantity = 1, size }) => {
    const BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
     try {
-      const response = await fetch(`${BACKEND_URL}/cart/add`, {
+      const response = await fetch(`${BACKEND_URL}/api/cart/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -153,7 +153,7 @@ export const ContextProvider = ({children})=>{
   const getCart = async () => {
     const BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
     try {
-      const response = await fetch(`${BACKEND_URL}/cart`, {
+      const response = await fetch(`${BACKEND_URL}/api/cart`, {
         method: "GET",
         credentials: "include", // send cookies
       });
@@ -170,7 +170,7 @@ export const ContextProvider = ({children})=>{
 
   const removeCart = async(id) => {
     const BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-    const res = await fetch(`${BACKEND_URL}/cart/delete/${id}`, {
+    const res = await fetch(`${BACKEND_URL}/api/cart/delete/${id}`, {
       method: "DELETE",
       credentials: "include",
     })

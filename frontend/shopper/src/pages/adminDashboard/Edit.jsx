@@ -132,7 +132,7 @@ export default function Edit() {
         });
       }
 
-      const res = await fetch(`${BACKEND_URL}/producSts/edit/${id}`, {
+      const res = await fetch(`${BACKEND_URL}/api/products/edit/${id}`, {
         method: "PUT",
         credentials: "include",
         body: formData,

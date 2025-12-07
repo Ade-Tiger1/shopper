@@ -137,7 +137,7 @@ const paymentCallback = asyncWrapper(async(req, res, next) => {
 
      // ❌ Handle user cancelling or failed payment (before verification)
     if (status && status !== "successful") {
-        return res.redirect(`http://localhost:5173/payment-failed?reason=${status}`);
+        return res.redirect(`https://shopper-tpid.onrender.com/payment-failed?reason=${status}`);
     }
 
     if(!transaction_id || !tx_ref){
@@ -167,12 +167,12 @@ const paymentCallback = asyncWrapper(async(req, res, next) => {
     //     return notFound(res, "Transaction not found");
     // }
     if (!transaction) {
-        return res.redirect(`http://localhost:5173/payment-failed?reason=transaction_not_found`);
+        return res.redirect(`https://shopper-tpid.onrender.com/payment-failed?reason=transaction_not_found`);
     }
 
     // If already paid → redirect immediately
     if (transaction.status === "paid") {
-        return res.redirect(`http://localhost:5173/payment-success?tx_ref=${tx_ref}`);
+        return res.redirect(`https://shopper-tpid.onrender.com/payment-success?tx_ref=${tx_ref}`);
     }
 
     // Update transaction
@@ -198,7 +198,7 @@ const paymentCallback = asyncWrapper(async(req, res, next) => {
     // ✅ Clear cart
     await Cart.findOneAndDelete({ userid: transaction.userId });
 
-    return res.redirect(`http://localhost:5173/payment-success?tx_ref=${tx_ref}`);
+    return res.redirect(`https://shopper-tpid.onrender.com/payment-success?tx_ref=${tx_ref}`);
 })
 
 const getUserTransactions = asyncWrapper(async(req, res, next) => {

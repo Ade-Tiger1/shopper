@@ -18,7 +18,7 @@ function OrderPage() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await fetch(`${BACKEND_URL}/orders`, {
+        const res = await fetch(`${BACKEND_URL}/api/orders`, {
           method: "GET",
           credentials: "include",
           headers: { "Content-Type": "application/json" },

@@ -33,9 +33,9 @@ app.use("/uploads", express.static("uploads"))
 app.use("/auth", authRouter);
 app.use("/user", verifyUser, isAdmin, userRouter);
 app.use("/admin", verifyUser, isAdmin, adminRouter);
-app.use("/products", productRouter);
-app.use("/cart", verifyUser, cartRouter)
-app.use("/orders", orderRouter);
+app.use("/api/products", productRouter);
+app.use("/api/cart", verifyUser, cartRouter)
+app.use("/api/orders", orderRouter);
 app.use(paymentRouter);
 
 

@@ -57,7 +57,7 @@ function AdminDashboard() {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${BACKEND_URL}/products`, {
+      const response = await fetch(`${BACKEND_URL}/api/products`, {
         credentials: 'include'
       });
       const data = await response.json();
@@ -73,7 +73,7 @@ function AdminDashboard() {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${BACKEND_URL}/orders/admin/all-orders`, {
+      const response = await fetch(`${BACKEND_URL}/api/orders/admin/all-orders`, {
         credentials: 'include'
       });
       const data = await response.json();
@@ -186,7 +186,7 @@ function AdminDashboard() {
     if (!window.confirm('Are you sure you want to delete this product?')) return;
     
     try {
-      const response = await fetch(`${BACKEND_URL}/products/delete-product/${productId}`, {
+      const response = await fetch(`${BACKEND_URL}/api/products/delete-product/${productId}`, {
         method: 'DELETE',
         credentials: 'include'
       });
@@ -206,7 +206,7 @@ function AdminDashboard() {
   // Update Order Status
   const handleUpdateOrderStatus = async (orderId, newStatus) => {
     try {
-      const response = await fetch(`${BACKEND_URL}/orders/${orderId}`, {
+      const response = await fetch(`${BACKEND_URL}/api/order/admin/delete-order/${orderId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -528,7 +528,7 @@ const ProductsContent = () => {
       
       // Add your product submission logic here
       try {
-    const res = await fetch(`${BACKEND_URL}/products/create-product`, {
+    const res = await fetch(`${BACKEND_URL}/api/products/create-product`, {
       method: "POST",
       credentials: "include",   // to send cookie token
       body: submitData          // no headers needed for FormData
