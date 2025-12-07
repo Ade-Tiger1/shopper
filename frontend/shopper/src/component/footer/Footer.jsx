@@ -1,7 +1,9 @@
 import React from 'react';
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { ShopperContext } from '../../context/Context';
 
 const Footer = () => {
+  const {isAuthenticated} = React.useContext(ShopperContext);
   return (
     <footer className="bg-black text-gray-300 pt-10 pb-5">
       <div className="container mx-auto px-6 md:px-12">
@@ -25,10 +27,10 @@ const Footer = () => {
           <div className="md:w-1/5">
             <h3 className="font-bold text-xl mb-3">Quick Links</h3>
             <ul className="flex flex-col gap-2">
-              <li><a href="/products" className="hover:text-white transition">All Products</a></li>
-              <li><a href="/new-arrivals" className="hover:text-white transition">New Arrivals</a></li>
-              <li><a href="/popular" className="hover:text-white transition">Popular Products</a></li>
-              <li><a href="/best" className="hover:text-white transition">Best Products</a></li>
+              <li><a href={isAuthenticated ? '/products': '/login'} className="hover:text-white transition">All Products</a></li>
+              <li><a href={isAuthenticated ? '/products': '/login'} className="hover:text-white transition">New Arrivals</a></li>
+              <li><a href={isAuthenticated ? '/products': '/login'} className="hover:text-white transition">Popular Products</a></li>
+              <li><a href={isAuthenticated ? '/products': '/login'} className="hover:text-white transition">Best Products</a></li>
             </ul>
           </div>
 
@@ -37,9 +39,9 @@ const Footer = () => {
             <h3 className="font-bold text-xl mb-3">Support</h3>
             <ul className="flex flex-col gap-2">
               <li><a href="/contact" className="hover:text-white transition">Contact Us</a></li>
-              <li><a href="/faq" className="hover:text-white transition">FAQ</a></li>
-              <li><a href="/shipping" className="hover:text-white transition">Shipping</a></li>
-              <li><a href="/returns" className="hover:text-white transition">Returns</a></li>
+              <li><a href="/contact" className="hover:text-white transition">FAQ</a></li>
+              <li><a href="/about" className="hover:text-white transition">About</a></li>
+              <li><a href="/" className="hover:text-white transition">Home</a></li>
             </ul>
           </div>
 
