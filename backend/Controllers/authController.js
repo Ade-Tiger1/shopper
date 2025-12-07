@@ -48,7 +48,7 @@ const login = asyncWrapper(async(req, res, next) => {
     res.cookie("access-token", token, {
         httpOnly: true,
         sameSite: "lax",
-        secure: false,
+        secure: true,
         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)// 7days
     })
     return res.status(StatusCodes.OK).json({msg: "Signin Sucessfully"});
