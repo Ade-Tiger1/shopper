@@ -41,7 +41,7 @@ export const ContextProvider = ({children})=>{
           "Content-Type": "application/json"
         }
       })
-      if(!response.ok) console.log("Invalid Fetch For Products")
+      if(!response.ok) toast.error("Invalid Fetch For Products")
       const data = await response.json()
       // console.log(data)
       setProducts(data.products)
@@ -107,7 +107,7 @@ export const ContextProvider = ({children})=>{
 
             if (res.ok) {
                 const data = await res.json();
-                console.log(data); // update state
+                // console.log(data); // update state
                 toast.success(data.message);
                 setIsAuthenticated(false);
                 localStorage.setItem("isAuthenticated", false); // persist
@@ -117,7 +117,7 @@ export const ContextProvider = ({children})=>{
             }
         }catch (err) {
             console.log(err);
-            console.log("Unable to connect to server.");
+            toast.error("Unable to connect to server.");
         }
     };
 
@@ -204,7 +204,7 @@ export const ContextProvider = ({children})=>{
 
   const handleCategoryChange = (newCategory) => {
     setCategory(newCategory);
-    console.log("Category changed to:", newCategory);
+    // console.log("Category changed to:", newCategory);
   }
 
   const lastIndex = currentPage * productsPerPage;

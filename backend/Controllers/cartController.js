@@ -6,7 +6,7 @@ const { notFound, Sucess, Created, ServerError } = require("../Middlewares/retur
 
 const addToCart = asyncWrapper(async(req, res, next) => {
     const userid = req.user;
-    console.log(userid)
+    // console.log(userid)
     const {productId, quantity, size} = req.body;
 
     /***********check if product exist**********************/

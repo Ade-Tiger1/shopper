@@ -147,7 +147,7 @@ export default function Edit() {
       navigate("/admin");
     } catch (err) {
       console.error("Update error:", err);
-      alert("Update failed. Check server logs.");
+      toast.error("Update failed. Check server logs.");
     } finally {
       setSaving(false);
     }

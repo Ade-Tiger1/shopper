@@ -170,14 +170,14 @@ function AdminDashboard() {
       });
       
       if (response.ok) {
-        alert('User deleted successfully');
+        toast.success('User deleted successfully');
         fetchUsers(); // Refresh list
       } else {
-        alert('Failed to delete user');
+        toast.error('Failed to delete user');
       }
     } catch (error) {
       console.error('Error deleting user:', error);
-      alert('Error deleting user');
+      toast.error('Error deleting user');
     }
   };
 
@@ -192,14 +192,14 @@ function AdminDashboard() {
       });
       
       if (response.ok) {
-        alert('Product deleted successfully');
+        toast.success('Product deleted successfully');
         fetchProducts(); // Refresh list
       } else {
-        alert('Failed to delete product');
+        toast.error('Failed to delete product');
       }
     } catch (error) {
       console.error('Error deleting product:', error);
-      alert('Error deleting product');
+      toast.error('Error deleting product');
     }
   };
 
@@ -214,14 +214,14 @@ function AdminDashboard() {
       });
       
       if (response.ok) {
-        alert('Order status updated');
+        toast.success('Order status updated');
         fetchOrders(); // Refresh list
       } else {
-        alert('Failed to update order status');
+        toast.error('Failed to update order status');
       }
     } catch (error) {
       console.error('Error updating order:', error);
-      alert('Error updating order');
+      toast.error('Error updating order');
     }
   };
 
@@ -232,9 +232,9 @@ function AdminDashboard() {
         credentials: "include"
     });
     if(!res.ok){
-        console.log("Error logging out");
+        toast.error("Error logging out");
     }
-    console.log("Logged out successfully");
+    toast.success("Logged out successfully");
     navigate("/login");
   }
 
@@ -521,10 +521,10 @@ const ProductsContent = () => {
         if (image) submitData.append("image", image);
       });
 
-      console.log('Product Data:', {
-        ...formData,
-        images: productImages.filter(img => img !== null)
-      });
+      // console.log('Product Data:', {
+      //   ...formData,
+      //   images: productImages.filter(img => img !== null)
+      // });
       
       // Add your product submission logic here
       try {
@@ -537,8 +537,8 @@ const ProductsContent = () => {
     const data = await res.json();
 
     if (!res.ok) {
-      console.error("Error:", data);
-      return alert(data.message || "Something went wrong");
+      toast.error("Error:", data);
+      return toast.error(data.message || "Something went wrong");
     }
 
     

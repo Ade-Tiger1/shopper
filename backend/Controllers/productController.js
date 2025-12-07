@@ -142,7 +142,7 @@ const updateProduct = asyncWrapper(async(req, res, next)=>{
     if(newImages.length > 0){
         updatedData.image = newImages
     }
-    console.log(updatedData)
+    // console.log(updatedData)
     
     /************update other field**********************/
     const updatedProduct = await Product.findByIdAndUpdate(id, updatedData, {new: true, runValidators: true})

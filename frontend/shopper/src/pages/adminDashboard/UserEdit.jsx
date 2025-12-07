@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom"; // or Next.js router if using Next
 import { ArrowLeft } from "lucide-react";
+import {toast} from "react-toastify";
 
 const UserEdit = () => {
   const { id } = useParams(); // grab user ID from URL
@@ -23,8 +24,7 @@ const UserEdit = () => {
             credentials: "include",
             headers: { "Content-Type": "application/json" },
         });
-        console.log(response);
-        console.log("this is my", id);
+        
         const data = await response.json();
         setFormData({
           name: data.name,
@@ -60,7 +60,7 @@ const UserEdit = () => {
         throw new Error("Failed to update user");
       }
       const data = await response.json();
-      console.log("User updated:", data);
+      toast.success("User updated successfully");
       navigate("/admin"); // redirect back to user list
     } catch (err) {
       console.error("Failed to update user", err);

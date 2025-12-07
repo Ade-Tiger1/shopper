@@ -12,23 +12,23 @@ const Cart = require("../Models/cartModel");
 const initiatePayment = asyncWrapper(async(req, res, next) => {
     const userid = req.user;
     const { phone_number } = req.body;
-    console.log("=== PAYMENT INITIATION STARTED ===");
-    console.log("User ID:", userid);
-    console.log("Phone Number:", phone_number);
+    // console.log("=== PAYMENT INITIATION STARTED ===");
+    // console.log("User ID:", userid);
+    // console.log("Phone Number:", phone_number);
 
     const user = await User.findById(userid);
     if(!user){
-        console.log("❌ User not found");
+        // console.log("❌ User not found");
         return notFound(res, "User does not exist")
     }
-    console.log("✓ User found:", user.name);
+    // console.log("✓ User found:", user.name);
 
     const authEmail = await Auth.findOne({userid: userid})
     if(!authEmail){
-        console.log("❌ Auth email not found");
+        // console.log("❌ Auth email not found");
         return notFound(res, "User email not found")
     }
-    console.log("✓ Email found:", authEmail.email);
+    // console.log("✓ Email found:", authEmail.email);
 
     // Get cart
     const cart = await Cart.findOne({ userid }).populate("items.product");
@@ -81,7 +81,7 @@ const initiatePayment = asyncWrapper(async(req, res, next) => {
         }
     };
 
-    console.log("📤 Sending to Flutterwave:", JSON.stringify(paymentData, null, 2));
+    // console.log("📤 Sending to Flutterwave:", JSON.stringify(paymentData, null, 2));
 
     try{
         const response = await fetch("https://api.flutterwave.com/v3/payments", {
@@ -94,7 +94,7 @@ const initiatePayment = asyncWrapper(async(req, res, next) => {
         });
 
         const data = await response.json();
-        console.log("📥 Flutterwave Response:", data);
+        // console.log("📥 Flutterwave Response:", data);
 
         if (!data.data || !data.data.link) {
             return ServerError(res, "Failed to get payment link from Flutterwave");
@@ -124,7 +124,7 @@ const initiatePayment = asyncWrapper(async(req, res, next) => {
         });
 
     } catch (err) {
-        console.error("❌ PAYMENT ERROR:", err);
+        // console.error("❌ PAYMENT ERROR:", err);
         return ServerError(res, "Payment initialization failed");
     }
 

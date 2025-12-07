@@ -16,7 +16,7 @@ const orderRouter = require("./Routers/orderRoute")
 const paymentRouter = require("./Routers/paymentRouter")
 
 app.use(cors({
-    origin: ["http://localhost:5173", process.env.CLIENT_URL],
+    origin: process.env.CLIENT_URL,
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type"]
