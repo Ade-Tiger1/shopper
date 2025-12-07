@@ -283,7 +283,7 @@ export default function About() {
           <p className="text-lg md:text-xl text-blue-100 mb-6 md:mb-8 px-4">
             Join thousands of happy customers and discover amazing products today
           </p>
-          <Link to="/products" className="px-8 md:px-10 py-3 md:py-4 bg-white text-blue-600 rounded-lg font-semibold text-base md:text-lg hover:bg-gray-100 transition-colors">
+          <Link to={isAuthenticated ? "/products": "/login"} className="px-8 md:px-10 py-3 md:py-4 bg-white text-blue-600 rounded-lg font-semibold text-base md:text-lg hover:bg-gray-100 transition-colors">
             Browse Products
           </Link>
         </div>
