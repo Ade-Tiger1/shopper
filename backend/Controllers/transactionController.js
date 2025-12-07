@@ -68,7 +68,7 @@ const initiatePayment = asyncWrapper(async(req, res, next) => {
         tx_ref: transactionRef,
         amount: totalAmount,
         currency: "NGN",
-        redirect_url: "http://localhost:5000/payment-callback",
+        redirect_url: "https://shopper-tpid.onrender.com/payment-callback",
         customer: {
             email: authEmail.email,
             phonenumber: phone_number,
