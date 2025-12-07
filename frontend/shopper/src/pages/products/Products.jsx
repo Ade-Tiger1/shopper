@@ -4,7 +4,7 @@ import {CiFilter} from 'react-icons/ci'
 import { ShopperContext } from '../../context/Context'
 
 const Products = () => {
-  const {products, currentPage, productsPerPage, currentProducts, setCurrentPage, setProducts, handleCategoryChange, category} = useContext(ShopperContext);
+  const {isAuthenticated, products, currentPage, productsPerPage, currentProducts, setCurrentPage, setProducts, handleCategoryChange, category} = useContext(ShopperContext);
   const totalPages = Math.ceil(products.length / productsPerPage);
   
   return (
@@ -31,7 +31,7 @@ const Products = () => {
       {!currentProducts.length && <p className='text-center col-span-4 font-semibold text-2xl'>No products found in this category.</p>}
       {(currentProducts ?? []).map((product) => (
         <div key={product._id} className="border shadow-lg rounded-lg overflow-hidden">
-          <Link to={`${product._id}`}>
+          <Link to={isAuthenticated ? `${product._id}`: '/login'}>
             <div className="card-image">
               <img className='w-full h-70 transform transition duration-500 hover:scale-105' src={`http://localhost:5000/uploads/images/${product.image[0]}`} alt="" />
             </div>

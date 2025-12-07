@@ -7,7 +7,7 @@ const { verifyUser, isAdmin } = require("../Middlewares/verifyUser")
 
 /*********************Product By Admin**************************/
 router.post("/create-product", upload.array("image", 5), verifyUser, isAdmin, createProduct)
-router.get("/", verifyUser, getAllProduct)//verifyUsers middleware
+router.get("/", getAllProduct)//verifyUsers middleware
 router.delete("/delete-product/:id", verifyUser, isAdmin, deleteProduct)
 router.put("/edit/:id", upload.array("image", 5), verifyUser, isAdmin, updateProduct)
 

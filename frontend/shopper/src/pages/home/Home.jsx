@@ -196,7 +196,7 @@ function Home() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  to={isAuthenticated ? "/products" : "/login"}
+                  to={isAuthenticated ? "/products" : "/products"}
                   className="relative z-50 group bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg 
                             hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl 
                             inline-flex items-center justify-center"
@@ -289,7 +289,7 @@ function Home() {
                       )}
                     </div>
                     <button className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
-                      <Link to={isAuthenticated ? "/products": "/login"} className='flex justify-center items-center'>
+                      <Link to={isAuthenticated ? "/products": "/products"} className='flex justify-center items-center'>
                         <ArrowRight className="w-5 h-5" />
                       </Link>
                     </button>
@@ -301,7 +301,7 @@ function Home() {
 
           <div className="text-center mt-12">
             <button className="bg-gray-900 text-white px-8 py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors inline-flex items-center">
-              <Link to={isAuthenticated ? "/products": "/login"} className='flex justify-center items-center'>
+              <Link to={isAuthenticated ? "/products": "/products"} className='flex justify-center items-center'>
                 View All Products
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
@@ -339,7 +339,7 @@ function Home() {
                   <h3 className="text-3xl font-bold mb-2">{category.name}</h3>
                   <p className="text-white/90 mb-4">{category.count}+ Items</p>
                   <button className="bg-white text-gray-900 px-6 py-2 rounded-full font-semibold hover:bg-blue-600 hover:text-white transition-colors inline-flex items-center">
-                    <Link to={isAuthenticated ? "/products": "/login"} className='flex justify-center items-center'>
+                    <Link to={isAuthenticated ? "/products": "/products"} className='flex justify-center items-center'>
                       Explore
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </Link>
