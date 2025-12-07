@@ -581,7 +581,7 @@ function Home() {
                     className="flex-1 bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                   />
                   <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl whitespace-nowrap">
-                    <a href="/products">Get 5% Off</a>
+                    <a href={isAuthenticated ? '/products': '/login'}>Get 5% Off</a>
                   </button>
                 </div>
               </div>
