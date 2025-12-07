@@ -6,6 +6,7 @@ import { ShopperContext } from '../../context/Context'
 const Products = () => {
   const {isAuthenticated, products, currentPage, productsPerPage, currentProducts, setCurrentPage, setProducts, handleCategoryChange, category} = useContext(ShopperContext);
   const totalPages = Math.ceil(products.length / productsPerPage);
+  const BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
   
   return (
     <div className='Home'>
@@ -33,7 +34,7 @@ const Products = () => {
         <div key={product._id} className="border shadow-lg rounded-lg overflow-hidden">
           <Link to={isAuthenticated ? `${product._id}`: '/login'}>
             <div className="card-image">
-              <img className='w-full h-70 transform transition duration-500 hover:scale-105' src={`http://localhost:5000/uploads/images/${product.image[0]}`} alt="" />
+              <img className='w-full h-70 transform transition duration-500 hover:scale-105' src={`${BACKEND_URL}/uploads/images/${product.image[0]}`} alt="" />
             </div>
             <div className="card-body p-5">
               <h3 className='mt-3'>{product.title}</h3>
