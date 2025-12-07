@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ShopperContext } from '../../context/Context';
 
 function Cart() {
+  const BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const {cart, cartCount, removeCart, updateQuantity, isLoading} = useContext(ShopperContext)
   const sub = cart.map(cartSubtotal => {
     return cartSubtotal.subtotal
@@ -132,7 +133,7 @@ function Cart() {
                         {/* Product Image */}
                         <div className="flex-shrink-0">
                           <img
-                            src={`http://localhost:5000/uploads/images/${item.image[0]}`}
+                            src={`${BACKEND_URL}/uploads/images/${item.image[0]}`}
                             alt={item.name}
                             className="w-24 h-24 object-cover rounded-lg border border-gray-200"
                           />
